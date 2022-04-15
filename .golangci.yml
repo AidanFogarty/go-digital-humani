@@ -1,0 +1,23 @@
+run:
+  timeout: 2m
+  modules-download-mode: readonly
+
+linters-settings:
+  funlen:
+    lines: 60
+    statements: 40
+
+linters:
+  enable:
+    - bodyclose
+    - funlen
+    - goconst
+    - gocritic
+    - gocyclo
+    - godot
+    - godox
+    - gofmt
+    - gomnd
+    - gosec
+    - revive
+    - unparam
