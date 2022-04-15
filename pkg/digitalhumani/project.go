@@ -6,40 +6,45 @@ import (
 	"net/http"
 )
 
+// Project represents a detailed view of a DigitalHumani reforestation projects.
 type Project struct {
-	Created                            string `json:"created"`
-	Updated                            string `json:"updated"`
-	ID                                 string `json:"id"`
-	Name                               string `json:"name"`
-	Description                        string `json:"description"`
-	ReforestationCompanyName_en        string `json:"reforestationCompanyName_en"`
-	ReforestationCompanyName_fr        string `json:"reforestationCompanyName_fr"`
-	ReforestationCompanyAddress_en     string `json:"reforestationCompanyAddress_en"`
-	ReforestationCompanyAddress_fr     string `json:"reforestationCompanyAddress_fr"`
-	ReforestationCompanyWebsite_en     string `json:"reforestationCompanyWebsite_en"`
-	ReforestationCompanyWebsite_fr     string `json:"reforestationCompanyWebsite_fr"`
-	ReforestationProjectCountry_en     string `json:"reforestationProjectCountry_en"`
-	ReforestationProjectCountry_fr     string `json:"reforestationProjectCountry_fr"`
-	ReforestationProjectDescription_en string `json:"reforestationProjectDescription_en"`
-	ReforestationProjectDescription_fr string `json:"reforestationProjectDescription_fr"`
-	ReforestationProjectImageURL_en    string `json:"reforestationProjectImageURL_en"`
-	ReforestationProjectImageURL_fr    string `json:"reforestationProjectImageURL_fr"`
-	ReforestationProjectState_en       string `json:"reforestationProjectState_en"`
-	ReforestationProjectState_fr       string `json:"reforestationProjectState_fr"`
-	ReforestationProjectWebsite_en     string `json:"reforestationProjectWebsite_en"`
-	ReforestationProjectWebsite_fr     string `json:"reforestationProjectWebsite_fr"`
+	Created                           string `json:"created"`
+	Updated                           string `json:"updated"`
+	ID                                string `json:"id"`
+	Name                              string `json:"name"`
+	Description                       string `json:"description"`
+	ReforestationCompanyNameEn        string `json:"reforestationCompanyName_en"`
+	ReforestationCompanyNameFr        string `json:"reforestationCompanyName_fr"`
+	ReforestationCompanyAddressEn     string `json:"reforestationCompanyAddress_en"`
+	ReforestationCompanyAddressFr     string `json:"reforestationCompanyAddress_fr"`
+	ReforestationCompanyWebsiteEn     string `json:"reforestationCompanyWebsite_en"`
+	ReforestationCompanyWebsiteFr     string `json:"reforestationCompanyWebsite_fr"`
+	ReforestationProjectCountryEn     string `json:"reforestationProjectCountry_en"`
+	ReforestationProjectCountryFr     string `json:"reforestationProjectCountry_fr"`
+	ReforestationProjectDescriptionEn string `json:"reforestationProjectDescription_en"`
+	ReforestationProjectDescriptionFr string `json:"reforestationProjectDescription_fr"`
+	ReforestationProjectImageURLEn    string `json:"reforestationProjectImageURL_en"`
+	ReforestationProjectImageURLFr    string `json:"reforestationProjectImageURL_fr"`
+	ReforestationProjectStateEn       string `json:"reforestationProjectState_en"`
+	ReforestationProjectStateFr       string `json:"reforestationProjectState_fr"`
+	ReforestationProjectWebsiteEn     string `json:"reforestationProjectWebsite_en"`
+	ReforestationProjectWebsiteFr     string `json:"reforestationProjectWebsite_fr"`
 }
 
+// Projects represents a list of Projects with a reduced number of attributes. For more information on a given project,
+// User GetProject method.
 type Projects []struct {
-	ID                                 string `json:"id"`
-	Name                               string `json:"name"`
-	ReforestationProjectDescription_en string `json:"reforestationProjectDescription_en"`
-	ReforestationProjectState_en       string `json:"reforestationProjectState_en"`
-	ReforestationProjectCountry_en     string `json:"reforestationProjectCountry_en"`
-	ReforestationProjectWebsite_en     string `json:"reforestationProjectWebsite_en"`
-	ReforestationCompanyName_en        string `json:"reforestationCompanyName_en"`
+	ID                                string `json:"id"`
+	Name                              string `json:"name"`
+	ReforestationProjectDescriptionEn string `json:"reforestationProjectDescription_en"`
+	ReforestationProjectStateEn       string `json:"reforestationProjectState_en"`
+	ReforestationProjectCountryEn     string `json:"reforestationProjectCountry_en"`
+	ReforestationProjectWebsiteEn     string `json:"reforestationProjectWebsite_en"`
+	ReforestationCompanyNameEn        string `json:"reforestationCompanyName_en"`
 }
 
+// GetProject method allows you to retrieve the details of a single reforestation project.
+// Example of an id: 93333333 (Project Ids are 8 digits long).
 func (digitalhumani *DigitialHumani) GetProject(ctx context.Context, id string) (*Project, error) {
 	url := fmt.Sprintf("%s/project/%s", digitalhumani.url, id)
 
@@ -49,7 +54,7 @@ func (digitalhumani *DigitialHumani) GetProject(ctx context.Context, id string) 
 	}
 
 	project := &Project{}
-	err = digitalhumani.doAction(ctx, req, project)
+	err = digitalhumani.doAction(req, project)
 	if err != nil {
 		return nil, err
 	}
@@ -57,6 +62,7 @@ func (digitalhumani *DigitialHumani) GetProject(ctx context.Context, id string) 
 	return project, nil
 }
 
+// GetAllProjects method retrieves all the reforestation projects available.
 func (digitalhumani *DigitialHumani) GetAllProjects(ctx context.Context) (*Projects, error) {
 	url := fmt.Sprintf("%s/project", digitalhumani.url)
 
@@ -66,7 +72,7 @@ func (digitalhumani *DigitialHumani) GetAllProjects(ctx context.Context) (*Proje
 	}
 
 	projects := &Projects{}
-	err = digitalhumani.doAction(ctx, req, projects)
+	err = digitalhumani.doAction(req, projects)
 	if err != nil {
 		return nil, err
 	}

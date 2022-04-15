@@ -1,31 +1,32 @@
 package digitalhumani
 
 import (
-	"context"
 	"encoding/json"
 	"net/http"
 )
 
+// DigitialHumani represents the DigitialHumani Client for interacting with the API.
 type DigitialHumani struct {
 	url          string
 	apiKey       string
-	enterpriseId string
-	HttpClient   *http.Client
+	enterpriseID string
+	HTTPClient   *http.Client
 }
 
-func New(url string, apiKey string, enterpriseId string) *DigitialHumani {
+// New returns a DigitalHumani client, with a default http client.
+func New(url string, apiKey string, enterpriseID string) *DigitialHumani {
 	return &DigitialHumani{
 		url:          url,
 		apiKey:       apiKey,
-		enterpriseId: enterpriseId,
-		HttpClient:   http.DefaultClient,
+		enterpriseID: enterpriseID,
+		HTTPClient:   http.DefaultClient,
 	}
 }
 
-func (digitalhumani *DigitialHumani) doAction(ctx context.Context, req *http.Request, dst interface{}) error {
+func (digitalhumani *DigitialHumani) doAction(req *http.Request, dst interface{}) error {
 	req.Header.Add("X-Api-Key", digitalhumani.apiKey)
 
-	res, err := digitalhumani.HttpClient.Do(req)
+	res, err := digitalhumani.HTTPClient.Do(req)
 	if err != nil {
 		return err
 	}
