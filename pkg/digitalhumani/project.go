@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// Project represents a detailed view of a DigitalHumani reforestation projects.
-type Project struct {
+// ProjectDetailed represents a detailed view of a DigitalHumani reforestation projects.
+type ProjectDetailed struct {
 	Created                           string `json:"created"`
 	Updated                           string `json:"updated"`
 	ID                                string `json:"id"`
@@ -31,9 +31,9 @@ type Project struct {
 	ReforestationProjectWebsiteFr     string `json:"reforestationProjectWebsite_fr"`
 }
 
-// Projects represents a list of Projects with a reduced number of attributes. For more information on a given project,
+// Project represents reforestation project with a reduced number of attributes. For more information on a given project,
 // User GetProject method.
-type Projects []struct {
+type Project struct {
 	ID                                string `json:"id"`
 	Name                              string `json:"name"`
 	ReforestationProjectDescriptionEn string `json:"reforestationProjectDescription_en"`
@@ -45,7 +45,7 @@ type Projects []struct {
 
 // GetProject method allows you to retrieve the details of a single reforestation project.
 // Example of an id: 93333333 (Project Ids are 8 digits long).
-func (digitalhumani *DigitialHumani) GetProject(ctx context.Context, id string) (*Project, error) {
+func (digitalhumani *DigitialHumani) GetProject(ctx context.Context, id string) (*ProjectDetailed, error) {
 	url := fmt.Sprintf("%s/project/%s", digitalhumani.url, id)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -53,7 +53,7 @@ func (digitalhumani *DigitialHumani) GetProject(ctx context.Context, id string) 
 		return nil, err
 	}
 
-	project := &Project{}
+	project := &ProjectDetailed{}
 	err = digitalhumani.doAction(req, project)
 	if err != nil {
 		return nil, err
@@ -63,7 +63,7 @@ func (digitalhumani *DigitialHumani) GetProject(ctx context.Context, id string) 
 }
 
 // GetAllProjects method retrieves all the reforestation projects available.
-func (digitalhumani *DigitialHumani) GetAllProjects(ctx context.Context) (*Projects, error) {
+func (digitalhumani *DigitialHumani) GetAllProjects(ctx context.Context) ([]Project, error) {
 	url := fmt.Sprintf("%s/project", digitalhumani.url)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -71,8 +71,8 @@ func (digitalhumani *DigitialHumani) GetAllProjects(ctx context.Context) (*Proje
 		return nil, err
 	}
 
-	projects := &Projects{}
-	err = digitalhumani.doAction(req, projects)
+	projects := []Project{}
+	err = digitalhumani.doAction(req, &projects)
 	if err != nil {
 		return nil, err
 	}

@@ -64,8 +64,6 @@ func (digitalhumani *DigitialHumani) GetEnterpriseTreeCount(ctx context.Context,
 		req.URL.RawQuery = queryParams.Encode()
 	}
 
-	fmt.Println(req.URL.RawQuery)
-
 	enterpriseTreeCount := &EnterpriseTreeCount{}
 	err = digitalhumani.doAction(req, enterpriseTreeCount)
 	if err != nil {
