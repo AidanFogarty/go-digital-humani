@@ -1,5 +1,4 @@
 # Go Digital Humani 🌲
-
 [![Build Status](https://github.com/AidanFogarty/go-digital-humani/actions/workflows/pipeline.yml/badge.svg)](https://github.com/AidanFogarty/go-digital-humani)
 [![GoDoc](https://godoc.org/github.com/AidanFogarty/go-digital-humani?status.svg)](https://pkg.go.dev/github.com/AidanFogarty/go-digital-humani)
 [![Go Report Card](https://goreportcard.com/badge/github.com/AidanFogarty/go-digital-humani)](https://goreportcard.com/report/github.com/AidanFogarty/go-digital-humani)
