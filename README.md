@@ -61,6 +61,6 @@ Compile & Execute:
 &{3ea84180-bffe-11ec-9d64-0242ac120002 2022-04-19T16:29:54.171Z 1 abcdefg 93322350 MyUser}
 ```
 
-For other features, see the [docs]()
+For other features, see the [docs](https://pkg.go.dev/github.com/AidanFogarty/go-digital-humani)
 
 ## Contributing
