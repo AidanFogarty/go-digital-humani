@@ -1,6 +1,8 @@
-# Go Digital Humani
+# Go Digital Humani 🌲
 
 [![Build Status](https://github.com/AidanFogarty/go-digital-humani/actions/workflows/pipeline.yml/badge.svg)](https://github.com/AidanFogarty/go-digital-humani)
+[![GoDoc](https://godoc.org/github.com/AidanFogarty/go-digital-humani?status.svg)](https://pkg.go.dev/github.com/AidanFogarty/go-digital-humani)
+[![Go Report Card](https://goreportcard.com/badge/github.com/AidanFogarty/go-digital-humani)](https://goreportcard.com/report/github.com/AidanFogarty/go-digital-humani)
 
 Unoffical Go SDK for DigitalHumani's Reforestation as a Service API. A platform which easily integrates with your products to reforest the planet.
 
