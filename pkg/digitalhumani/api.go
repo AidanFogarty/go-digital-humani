@@ -38,6 +38,7 @@ func getEnv(env string) string {
 
 func (digitalhumani *DigitialHumani) doAction(req *http.Request, dst interface{}) error {
 	req.Header.Add("X-Api-Key", digitalhumani.apiKey)
+	req.Header.Add("Content-Type", "application/json")
 
 	res, err := digitalhumani.HTTPClient.Do(req)
 	if err != nil {
